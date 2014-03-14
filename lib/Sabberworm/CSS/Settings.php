@@ -25,29 +25,55 @@ class Settings {
 	*/
 	public $bLenientParsing = true;
 
+    /**
+     * 
+     */
 	private function __construct() {
 		$this->bMultibyteSupport = extension_loaded('mbstring');
 	}
 
+    /**
+     * 
+     * @return \Sabberworm\CSS\Settings
+     */
 	public static function create() {
 		return new Settings();
 	}
 	
+    /**
+     * 
+     * @param type $bMultibyteSupport
+     * @return \Sabberworm\CSS\Settings
+     */
 	public function withMultibyteSupport($bMultibyteSupport = true) {
 		$this->bMultibyteSupport = $bMultibyteSupport;
 		return $this;
 	}
 	
+    /**
+     * 
+     * @param type $sDefaultCharset
+     * @return \Sabberworm\CSS\Settings
+     */
 	public function withDefaultCharset($sDefaultCharset) {
 		$this->sDefaultCharset = $sDefaultCharset;
 		return $this;
 	}
 	
+    /**
+     * 
+     * @param type $bLenientParsing
+     * @return \Sabberworm\CSS\Settings
+     */
 	public function withLenientParsing($bLenientParsing = true) {
 		$this->bLenientParsing = $bLenientParsing;
 		return $this;
 	}
 	
+    /**
+     * 
+     * @return type
+     */
 	public function beStrict() {
 		return $this->withLenientParsing(false);
 	}

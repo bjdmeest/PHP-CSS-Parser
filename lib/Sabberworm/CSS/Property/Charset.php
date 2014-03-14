@@ -11,28 +11,56 @@ namespace Sabberworm\CSS\Property;
  */
 class Charset implements AtRule {
 
+    /**
+     *
+     * @var type 
+     */
 	private $sCharset;
 
+    /**
+     * 
+     * @param type $sCharset
+     */
 	public function __construct($sCharset) {
 		$this->sCharset = $sCharset;
 	}
 
+    /**
+     * 
+     * @param type $sCharset
+     */
 	public function setCharset($sCharset) {
 		$this->sCharset = $sCharset;
 	}
 
+    /**
+     * 
+     * @return type
+     */
 	public function getCharset() {
 		return $this->sCharset;
 	}
 
+    /**
+     * 
+     * @return type
+     */
 	public function __toString() {
 		return "@charset {$this->sCharset->__toString()};";
 	}
 
+    /**
+     * 
+     * @return string
+     */
 	public function atRuleName() {
 		return 'charset';
 	}
 
+    /**
+     * 
+     * @return type
+     */
 	public function atRuleArgs() {
 		return $this->sCharset;
 	}

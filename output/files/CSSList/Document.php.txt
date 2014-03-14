@@ -9,6 +9,7 @@ class Document extends CSSBlockList {
 
     /**
      * Gets all DeclarationBlock objects recursively.
+     * @return array
      */
     public function getAllDeclarationBlocks() {
         $aResult = array();
@@ -18,6 +19,7 @@ class Document extends CSSBlockList {
 
     /**
      * @deprecated use getAllDeclarationBlocks()
+     * @return type
      */
     public function getAllSelectors() {
         return $this->getAllDeclarationBlocks();
@@ -25,6 +27,7 @@ class Document extends CSSBlockList {
 
     /**
      * Returns all RuleSet objects found recursively in the tree.
+     * @return array
      */
     public function getAllRuleSets() {
         $aResult = array();
@@ -36,6 +39,7 @@ class Document extends CSSBlockList {
      * Returns all Value objects found recursively in the tree.
      * @param (object|string) $mElement the CSSList or RuleSet to start the search from (defaults to the whole document). If a string is given, it is used as rule name filter (@see{RuleSet->getRules()}).
      * @param (bool) $bSearchInFunctionArguments whether to also return Value objects used as Function arguments.
+     * @return array
      */
     public function getAllValues($mElement = null, $bSearchInFunctionArguments = false) {
         $sSearchString = null;
@@ -53,8 +57,9 @@ class Document extends CSSBlockList {
     /**
      * Returns all Selector objects found recursively in the tree.
      * Note that this does not yield the full DeclarationBlock that the selector belongs to (and, currently, there is no way to get to that).
-     * @param $sSpecificitySearch An optional filter by specificity. May contain a comparison operator and a number or just a number (defaults to "==").
+     * @param type $sSpecificitySearch An optional filter by specificity. May contain a comparison operator and a number or just a number (defaults to "==").
      * @example getSelectorsBySpecificity('>= 100')
+     * @return array
      */
     public function getSelectorsBySpecificity($sSpecificitySearch = null) {
         if (is_numeric($sSpecificitySearch) || is_numeric($sSpecificitySearch[0])) {
@@ -77,7 +82,6 @@ class Document extends CSSBlockList {
     /*
      * Create shorthands properties whenever possible
      */
-
     public function createShorthands() {
         foreach ($this->getAllDeclarationBlocks() as $oDeclaration) {
             $oDeclaration->createShorthands();

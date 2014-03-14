@@ -2,25 +2,48 @@
 
 namespace Sabberworm\CSS\Value;
 
+/**
+ * 
+ */
 class Color extends CSSFunction {
 
+    /**
+     * 
+     * @param type $aColor
+     */
 	public function __construct($aColor) {
 		parent::__construct(implode('', array_keys($aColor)), $aColor);
 	}
 
+    /**
+     * 
+     * @return type
+     */
 	public function getColor() {
 		return $this->aComponents;
 	}
 
+    /**
+     * 
+     * @param type $aColor
+     */
 	public function setColor($aColor) {
 		$this->setName(implode('', array_keys($aColor)));
 		$this->aComponents = $aColor;
 	}
 
+    /**
+     * 
+     * @return type
+     */
 	public function getColorDescription() {
 		return $this->getName();
 	}
 
+    /**
+     * 
+     * @return type
+     */
 	public function __toString() {
 		// Shorthand RGB color values
 		// TODO: Include in output settings (once they’re done)

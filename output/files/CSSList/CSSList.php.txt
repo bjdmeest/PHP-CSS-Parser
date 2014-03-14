@@ -15,12 +15,23 @@ use Sabberworm\CSS\Value\CSSFunction;
  */
 abstract class CSSList {
 
+    /**
+     *
+     * @var type 
+     */
 	protected $aContents;
 
+    /**
+     * 
+     */
 	public function __construct() {
 		$this->aContents = array();
 	}
 
+    /**
+     * 
+     * @param type $oItem
+     */
 	public function append($oItem) {
 		$this->aContents[] = $oItem;
 	}
@@ -36,6 +47,12 @@ abstract class CSSList {
 		}
 	}
 
+    /**
+     * 
+     * @param type $mSelector
+     * @param type $bRemoveAll
+     * @return type
+     */
 	public function removeDeclarationBlockBySelector($mSelector, $bRemoveAll = false) {
 		if ($mSelector instanceof DeclarationBlock) {
 			$mSelector = $mSelector->getSelectors();
@@ -61,6 +78,10 @@ abstract class CSSList {
 		}
 	}
 
+    /**
+     * 
+     * @return type
+     */
 	public function __toString() {
 		$sResult = '';
 		foreach ($this->aContents as $oContent) {
@@ -69,6 +90,10 @@ abstract class CSSList {
 		return $sResult;
 	}
 
+    /**
+     * 
+     * @return type
+     */
 	public function getContents() {
 		return $this->aContents;
 	}

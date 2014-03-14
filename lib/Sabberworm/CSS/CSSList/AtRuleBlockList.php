@@ -12,20 +12,37 @@ class AtRuleBlockList extends CSSBlockList implements AtRule {
 	private $sType;
 	private $sArgs;
 
+    /**
+     * 
+     * @param type $sType
+     * @param type $sArgs
+     */
 	public function __construct($sType, $sArgs = '') {
 		parent::__construct();
 		$this->sType = $sType;
 		$this->sArgs = $sArgs;
 	}
 
+    /**
+     * 
+     * @return type
+     */
 	public function atRuleName() {
 		return $this->sType;
 	}
 
+    /**
+     * 
+     * @return type
+     */
 	public function atRuleArgs() {
 		return $this->sArgs;
 	}
 
+    /**
+     * 
+     * @return string
+     */
 	public function __toString() {
 		$sResult = "@{$this->sType} {$this->sArgs}{";
 		$sResult .= parent::__toString();

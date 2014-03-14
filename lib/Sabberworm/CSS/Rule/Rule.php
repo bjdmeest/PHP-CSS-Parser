@@ -11,35 +11,72 @@ use Sabberworm\CSS\Value\Value;
  */
 class Rule {
 
+    /**
+     *
+     * @var Sabberworm\CSS\Rule
+     */
 	private $sRule;
+    
+    /**
+     *
+     * @var type 
+     */
 	private $mValue;
+    
+    /**
+     *
+     * @var type 
+     */
 	private $bIsImportant;
 
+    /**
+     * 
+     * @param type $sRule
+     */
 	public function __construct($sRule) {
 		$this->sRule = $sRule;
 		$this->mValue = null;
 		$this->bIsImportant = false;
 	}
 
+    /**
+     * 
+     * @param type $sRule
+     */
 	public function setRule($sRule) {
 		$this->sRule = $sRule;
 	}
 
+    /**
+     * 
+     * @return type
+     */
 	public function getRule() {
 		return $this->sRule;
 	}
 
+    /**
+     * 
+     * @return type
+     */
 	public function getValue() {
 		return $this->mValue;
 	}
 
+    /**
+     * 
+     * @param type $mValue
+     */
 	public function setValue($mValue) {
 		$this->mValue = $mValue;
 	}
 
-	/**
-	 *	@deprecated Old-Style 2-dimensional array given. Retained for (some) backwards-compatibility. Use setValue() instead and wrapp the value inside a RuleValueList if necessary.
-	 */
+    /**
+     * 
+	 * @deprecated Old-Style 2-dimensional array given. Retained for (some) backwards-compatibility. Use setValue() instead and wrapp the value inside a RuleValueList if necessary.
+     * @param type $aSpaceSeparatedValues
+     * @return \Sabberworm\CSS\Value\RuleValueList
+     */
 	public function setValues($aSpaceSeparatedValues) {
 		$oSpaceSeparatedList = null;
 		if (count($aSpaceSeparatedValues) > 1) {
@@ -73,8 +110,12 @@ class Rule {
 	}
 
 	/**
-	 *	@deprecated Old-Style 2-dimensional array returned. Retained for (some) backwards-compatibility. Use getValue() instead and check for the existance of a (nested set of) ValueList object(s).
 	 */
+    /**
+     * 
+	 * @deprecated Old-Style 2-dimensional array returned. Retained for (some) backwards-compatibility. Use getValue() instead and check for the existance of a (nested set of) ValueList object(s).
+     * @return type
+     */
 	public function getValues() {
 		if (!$this->mValue instanceof RuleValueList) {
 			return array(array($this->mValue));
@@ -98,9 +139,11 @@ class Rule {
 		return $aResult;
 	}
 
-	/**
+    /**
 	 * Adds a value to the existing value. Value will be appended if a RuleValueList exists of the given type. Otherwise, the existing value will be wrapped by one.
-	 */
+     * @param type $mValue
+     * @param type $sType
+     */
 	public function addValue($mValue, $sType = ' ') {
 		if (!is_array($mValue)) {
 			$mValue = array($mValue);
@@ -117,14 +160,26 @@ class Rule {
 		}
 	}
 
+    /**
+     * 
+     * @param type $bIsImportant
+     */
 	public function setIsImportant($bIsImportant) {
 		$this->bIsImportant = $bIsImportant;
 	}
 
+    /**
+     * 
+     * @return type
+     */
 	public function getIsImportant() {
 		return $this->bIsImportant;
 	}
 
+    /**
+     * 
+     * @return string
+     */
 	public function __toString() {
 		$sResult = "{$this->sRule}: ";
 		if ($this->mValue instanceof Value) { //Can also be a ValueList

@@ -7,7 +7,9 @@ namespace Sabberworm\CSS\Property;
  */
 class Selector {
 
-	//Regexes for specificity calculations
+    /**
+     * Regexes for specificity calculations
+     */
 	const NON_ID_ATTRIBUTES_AND_PSEUDO_CLASSES_RX = '/
 	(\.[\w]+)                   # classes
 	|
@@ -27,6 +29,9 @@ class Selector {
 	))
 	/ix';
 
+    /**
+     * Regexes for specificity calculations
+     */
 	const ELEMENTS_AND_PSEUDO_ELEMENTS_RX = '/
 	((^|[\s\+\>\~]+)[\w]+   # elements
 	|
@@ -35,9 +40,23 @@ class Selector {
 	))
 	/ix';
 
+    /**
+     *
+     * @var type 
+     */
 	private $sSelector;
+    
+    /**
+     *
+     * @var type 
+     */
 	private $iSpecificity;
 
+    /**
+     * 
+     * @param type $sSelector
+     * @param type $bCalculateSpecificity
+     */
 	public function __construct($sSelector, $bCalculateSpecificity = false) {
 		$this->setSelector($sSelector);
 		if ($bCalculateSpecificity) {
@@ -45,19 +64,35 @@ class Selector {
 		}
 	}
 
+    /**
+     * 
+     * @return type
+     */
 	public function getSelector() {
 		return $this->sSelector;
 	}
 
+    /**
+     * 
+     * @param type $sSelector
+     */
 	public function setSelector($sSelector) {
 		$this->sSelector = trim($sSelector);
 		$this->iSpecificity = null;
 	}
 
+    /**
+     * 
+     * @return type
+     */
 	public function __toString() {
 		return $this->getSelector();
 	}
 
+    /**
+     * 
+     * @return type
+     */
 	public function getSpecificity() {
 		if ($this->iSpecificity === null) {
 			$a = 0;

@@ -14,6 +14,10 @@ use Sabberworm\CSS\Value\CSSFunction;
  * Most CSSLists conform to this category but some at-rules (such as @keyframes) do not.
  */
 abstract class CSSBlockList extends CSSList {
+    /**
+     * 
+     * @param \Sabberworm\CSS\RuleSet\DeclarationBlock $aResult
+     */
 	protected function allDeclarationBlocks(&$aResult) {
 		foreach ($this->aContents as $mContent) {
 			if ($mContent instanceof DeclarationBlock) {
@@ -24,6 +28,10 @@ abstract class CSSBlockList extends CSSList {
 		}
 	}
 
+    /**
+     * 
+     * @param \Sabberworm\CSS\RuleSet\RuleSet $aResult
+     */
 	protected function allRuleSets(&$aResult) {
 		foreach ($this->aContents as $mContent) {
 			if ($mContent instanceof RuleSet) {
@@ -34,6 +42,13 @@ abstract class CSSBlockList extends CSSList {
 		}
 	}
 
+    /**
+     * 
+     * @param type $oElement
+     * @param type $aResult
+     * @param type $sSearchString
+     * @param type $bSearchInFunctionArguments
+     */
 	protected function allValues($oElement, &$aResult, $sSearchString = null, $bSearchInFunctionArguments = false) {
 		if ($oElement instanceof CSSBlockList) {
 			foreach ($oElement->getContents() as $oContent) {
@@ -57,6 +72,11 @@ abstract class CSSBlockList extends CSSList {
 		}
 	}
 
+    /**
+     * 
+     * @param type $aResult
+     * @param type $sSpecificitySearch
+     */
 	protected function allSelectors(&$aResult, $sSpecificitySearch = null) {
 		$aDeclarationBlocks = array();
 		$this->allDeclarationBlocks($aDeclarationBlocks);

@@ -16,13 +16,24 @@ use Sabberworm\CSS\Value\URL;
  */
 class DeclarationBlock extends RuleSet {
 
+    /**
+     *
+     * @var Sabberworm\CSS\Property\Selector[]
+     */
 	private $aSelectors;
 
+    /**
+     * 
+     */
 	public function __construct() {
 		parent::__construct();
 		$this->aSelectors = array();
 	}
 
+    /**
+     * 
+     * @param Sabberworm\CSS\Property\Selector[]|Sabberworm\CSS\Property\Selector $mSelector
+     */
 	public function setSelectors($mSelector) {
 		if (is_array($mSelector)) {
 			$this->aSelectors = $mSelector;
@@ -36,27 +47,35 @@ class DeclarationBlock extends RuleSet {
 		}
 	}
 
-	/**
+    /**
+     * 
 	 * @deprecated use getSelectors()
-	 */
+     * @return type
+     */
 	public function getSelector() {
 		return $this->getSelectors();
 	}
 
-	/**
+    /**
+     * 
 	 * @deprecated use setSelectors()
-	 */
+     * @param type $mSelector
+     */
 	public function setSelector($mSelector) {
 		$this->setSelectors($mSelector);
 	}
 
+    /**
+     * 
+     * @return type
+     */
 	public function getSelectors() {
 		return $this->aSelectors;
 	}
 
 	/**
 	 * Split shorthand declarations (e.g. +margin+ or +font+) into their constituent parts.
-	 * */
+	 */
 	public function expandShorthands() {
 		// border must be expanded before dimensions
 		$this->expandBorderShorthand();
@@ -68,7 +87,7 @@ class DeclarationBlock extends RuleSet {
 
 	/**
 	 * Create shorthand declarations (e.g. +margin+ or +font+) whenever possible.
-	 * */
+	 */
 	public function createShorthands() {
 		$this->createBackgroundShorthand();
 		$this->createDimensionsShorthand();
@@ -82,7 +101,7 @@ class DeclarationBlock extends RuleSet {
 	 * Split shorthand border declarations (e.g. <tt>border: 1px red;</tt>)
 	 * Additional splitting happens in expandDimensionsShorthand
 	 * Multiple borders are not yet supported as of 3
-	 * */
+	 */
 	public function expandBorderShorthand() {
 		$aBorderRules = array(
 			'border', 'border-left', 'border-right', 'border-top', 'border-bottom'
@@ -132,7 +151,7 @@ class DeclarationBlock extends RuleSet {
 	 * Split shorthand dimensional declarations (e.g. <tt>margin: 0px auto;</tt>)
 	 * into their constituent parts.
 	 * Handles margin, padding, border-color, border-style and border-width.
-	 * */
+	 */
 	public function expandDimensionsShorthand() {
 		$aExpansions = array(
 			'margin' => 'margin-%s',
@@ -188,7 +207,7 @@ class DeclarationBlock extends RuleSet {
 	 * Convert shorthand font declarations
 	 * (e.g. <tt>font: 300 italic 11px/14px verdana, helvetica, sans-serif;</tt>)
 	 * into their constituent parts.
-	 * */
+	 */
 	public function expandFontShorthand() {
 		$aRules = $this->getRulesAssoc();
 		if (!isset($aRules['font']))
@@ -253,8 +272,7 @@ class DeclarationBlock extends RuleSet {
 	 * (e.g. <tt>background: url("chess.png") gray 50% repeat fixed;</tt>)
 	 * into their constituent parts.
 	 * @see http://www.w3.org/TR/21/colors.html#propdef-background
-	 * */
-
+	 */
 	public function expandBackgroundShorthand() {
 		$aRules = $this->getRulesAssoc();
 		if (!isset($aRules['background']))
@@ -316,6 +334,10 @@ class DeclarationBlock extends RuleSet {
 		$this->removeRule('background');
 	}
 
+    /**
+     * 
+     * @return type
+     */
 	public function expandListStyleShorthand() {
 		$aListProperties = array(
 			'list-style-type' => 'disc',
@@ -373,6 +395,11 @@ class DeclarationBlock extends RuleSet {
 		$this->removeRule('list-style');
 	}
 
+    /**
+     * 
+     * @param array $aProperties
+     * @param type $sShorthand
+     */
 	public function createShorthandProperties(array $aProperties, $sShorthand) {
 		$aRules = $this->getRulesAssoc();
 		$aNewValues = array();
@@ -403,6 +430,9 @@ class DeclarationBlock extends RuleSet {
 		}
 	}
 
+    /**
+     * 
+     */
 	public function createBackgroundShorthand() {
 		$aProperties = array(
 			'background-color', 'background-image', 'background-repeat',
@@ -410,7 +440,10 @@ class DeclarationBlock extends RuleSet {
 		);
 		$this->createShorthandProperties($aProperties, 'background');
 	}
-
+    
+    /**
+     * 
+     */
 	public function createListStyleShorthand() {
 		$aProperties = array(
 			'list-style-type', 'list-style-position', 'list-style-image'
@@ -433,8 +466,7 @@ class DeclarationBlock extends RuleSet {
 	 * Looks for long format CSS dimensional properties
 	 * (margin, padding, border-color, border-style and border-width) 
 	 * and converts them into shorthand CSS properties.
-	 * */
-
+	 */
 	public function createDimensionsShorthand() {
 		$aPositions = array('top', 'right', 'bottom', 'left');
 		$aExpansions = array(
@@ -504,7 +536,7 @@ class DeclarationBlock extends RuleSet {
 	 * Looks for long format CSS font properties (e.g. <tt>font-weight</tt>) and 
 	 * tries to convert them into a shorthand CSS <tt>font</tt> property. 
 	 * At least font-size AND font-family must be present in order to create a shorthand declaration.
-	 * */
+	 */
 	public function createFontShorthand() {
 		$aFontProperties = array(
 			'font-style', 'font-variant', 'font-weight', 'font-size', 'line-height', 'font-family'
@@ -575,6 +607,10 @@ class DeclarationBlock extends RuleSet {
 		}
 	}
 
+    /**
+     * 
+     * @return string
+     */
 	public function __toString() {
 		$sResult = implode(', ', $this->aSelectors) . ' {';
 		$sResult .= parent::__toString();
