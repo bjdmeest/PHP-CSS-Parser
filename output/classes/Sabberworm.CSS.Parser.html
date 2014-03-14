@@ -1,0 +1,2137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                    <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/Sabberworm.html">\Sabberworm</a></li>
+                                                    </ul>
+                    </li>
+                    <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">343</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">1</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1688292956"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-1688292956" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-33644214"></a>
+                                <a href="../namespaces/Sabberworm.html" style="margin-left: 30px; padding-left: 0">Sabberworm</a>
+            </div>
+            <div id="namespace-33644214" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-841466347"></a>
+                                <a href="../namespaces/Sabberworm.CSS.html" style="margin-left: 30px; padding-left: 0">CSS</a>
+            </div>
+            <div id="namespace-841466347" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1494458965"></a>
+                                <a href="../namespaces/Sabberworm.CSS.CSSList.html" style="margin-left: 30px; padding-left: 0">CSSList</a>
+            </div>
+            <div id="namespace-1494458965" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Sabberworm.CSS.CSSList.AtRuleBlockList.html">AtRuleBlockList</a></li>
+                                                    <li class="class"><a href="../classes/Sabberworm.CSS.CSSList.CSSBlockList.html">CSSBlockList</a></li>
+                                                    <li class="class"><a href="../classes/Sabberworm.CSS.CSSList.CSSList.html">CSSList</a></li>
+                                                    <li class="class"><a href="../classes/Sabberworm.CSS.CSSList.Document.html">Document</a></li>
+                                                    <li class="class"><a href="../classes/Sabberworm.CSS.CSSList.KeyFrame.html">KeyFrame</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1251775492"></a>
+                                <a href="../namespaces/Sabberworm.CSS.Parsing.html" style="margin-left: 30px; padding-left: 0">Parsing</a>
+            </div>
+            <div id="namespace-1251775492" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Sabberworm.CSS.Parsing.UnexpectedTokenException.html">UnexpectedTokenException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2001309737"></a>
+                                <a href="../namespaces/Sabberworm.CSS.Property.html" style="margin-left: 30px; padding-left: 0">Property</a>
+            </div>
+            <div id="namespace-2001309737" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Sabberworm.CSS.Property.AtRule.html">AtRule</a></li>
+                                                                                                    <li class="class"><a href="../classes/Sabberworm.CSS.Property.Charset.html">Charset</a></li>
+                                                    <li class="class"><a href="../classes/Sabberworm.CSS.Property.CSSNamespace.html">CSSNamespace</a></li>
+                                                    <li class="class"><a href="../classes/Sabberworm.CSS.Property.Import.html">Import</a></li>
+                                                    <li class="class"><a href="../classes/Sabberworm.CSS.Property.Selector.html">Selector</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-623965428"></a>
+                                <a href="../namespaces/Sabberworm.CSS.Rule.html" style="margin-left: 30px; padding-left: 0">Rule</a>
+            </div>
+            <div id="namespace-623965428" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Sabberworm.CSS.Rule.Rule.html">Rule</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1365835069"></a>
+                                <a href="../namespaces/Sabberworm.CSS.RuleSet.html" style="margin-left: 30px; padding-left: 0">RuleSet</a>
+            </div>
+            <div id="namespace-1365835069" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Sabberworm.CSS.RuleSet.AtRuleSet.html">AtRuleSet</a></li>
+                                                    <li class="class"><a href="../classes/Sabberworm.CSS.RuleSet.DeclarationBlock.html">DeclarationBlock</a></li>
+                                                    <li class="class"><a href="../classes/Sabberworm.CSS.RuleSet.RuleSet.html">RuleSet</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-912236831"></a>
+                                <a href="../namespaces/Sabberworm.CSS.Value.html" style="margin-left: 30px; padding-left: 0">Value</a>
+            </div>
+            <div id="namespace-912236831" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Sabberworm.CSS.Value.Color.html">Color</a></li>
+                                                    <li class="class"><a href="../classes/Sabberworm.CSS.Value.CSSFunction.html">CSSFunction</a></li>
+                                                    <li class="class"><a href="../classes/Sabberworm.CSS.Value.PrimitiveValue.html">PrimitiveValue</a></li>
+                                                    <li class="class"><a href="../classes/Sabberworm.CSS.Value.RuleValueList.html">RuleValueList</a></li>
+                                                    <li class="class"><a href="../classes/Sabberworm.CSS.Value.Size.html">Size</a></li>
+                                                    <li class="class"><a href="../classes/Sabberworm.CSS.Value.String.html">String</a></li>
+                                                    <li class="class"><a href="../classes/Sabberworm.CSS.Value.URL.html">URL</a></li>
+                                                    <li class="class"><a href="../classes/Sabberworm.CSS.Value.Value.html">Value</a></li>
+                                                    <li class="class"><a href="../classes/Sabberworm.CSS.Value.ValueList.html">ValueList</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Sabberworm.CSS.Parser.html">Parser</a></li>
+                                                    <li class="class"><a href="../classes/Sabberworm.CSS.Settings.html">Settings</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/Sabberworm.CSS.html">\Sabberworm\CSS</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\Sabberworm\CSS</small>Parser</h1>
+                    <p><em>Parser class parses CSS from text into a data structure.</em></p>
+                    
+
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/Sabberworm.CSS.Parser.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/Sabberworm.CSS.Parser.html#method_setCharset" class="">setCharset()</a><br />
+                                                                    <a href="../classes/Sabberworm.CSS.Parser.html#method_getCharset" class="">getCharset()</a><br />
+                                                                    <a href="../classes/Sabberworm.CSS.Parser.html#method_parse" class="">parse()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No protected properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <a href="../classes/Sabberworm.CSS.Parser.html#method_parseDocument" class="">parseDocument()</a><br />
+                                                                    <a href="../classes/Sabberworm.CSS.Parser.html#method_parseList" class="">parseList()</a><br />
+                                                                    <a href="../classes/Sabberworm.CSS.Parser.html#method_parseAtRule" class="">parseAtRule()</a><br />
+                                                                    <a href="../classes/Sabberworm.CSS.Parser.html#method_parseIdentifier" class="">parseIdentifier()</a><br />
+                                                                    <a href="../classes/Sabberworm.CSS.Parser.html#method_parseStringValue" class="">parseStringValue()</a><br />
+                                                                    <a href="../classes/Sabberworm.CSS.Parser.html#method_parseCharacter" class="">parseCharacter()</a><br />
+                                                                    <a href="../classes/Sabberworm.CSS.Parser.html#method_parseSelector" class="">parseSelector()</a><br />
+                                                                    <a href="../classes/Sabberworm.CSS.Parser.html#method_parseRuleSet" class="">parseRuleSet()</a><br />
+                                                                    <a href="../classes/Sabberworm.CSS.Parser.html#method_parseRule" class="">parseRule()</a><br />
+                                                                    <a href="../classes/Sabberworm.CSS.Parser.html#method_parseValue" class="">parseValue()</a><br />
+                                                                    <a href="../classes/Sabberworm.CSS.Parser.html#method_listDelimiterForRule" class="">listDelimiterForRule()</a><br />
+                                                                    <a href="../classes/Sabberworm.CSS.Parser.html#method_parsePrimitiveValue" class="">parsePrimitiveValue()</a><br />
+                                                                    <a href="../classes/Sabberworm.CSS.Parser.html#method_parseNumericValue" class="">parseNumericValue()</a><br />
+                                                                    <a href="../classes/Sabberworm.CSS.Parser.html#method_parseColorValue" class="">parseColorValue()</a><br />
+                                                                    <a href="../classes/Sabberworm.CSS.Parser.html#method_parseURLValue" class="">parseURLValue()</a><br />
+                                                                    <a href="../classes/Sabberworm.CSS.Parser.html#method_identifierIs" class="">identifierIs()</a><br />
+                                                                    <a href="../classes/Sabberworm.CSS.Parser.html#method_comes" class="">comes()</a><br />
+                                                                    <a href="../classes/Sabberworm.CSS.Parser.html#method_peek" class="">peek()</a><br />
+                                                                    <a href="../classes/Sabberworm.CSS.Parser.html#method_consume" class="">consume()</a><br />
+                                                                    <a href="../classes/Sabberworm.CSS.Parser.html#method_consumeExpression" class="">consumeExpression()</a><br />
+                                                                    <a href="../classes/Sabberworm.CSS.Parser.html#method_consumeWhiteSpace" class="">consumeWhiteSpace()</a><br />
+                                                                    <a href="../classes/Sabberworm.CSS.Parser.html#method_consumeComment" class="">consumeComment()</a><br />
+                                                                    <a href="../classes/Sabberworm.CSS.Parser.html#method_isEnd" class="">isEnd()</a><br />
+                                                                    <a href="../classes/Sabberworm.CSS.Parser.html#method_consumeUntil" class="">consumeUntil()</a><br />
+                                                                    <a href="../classes/Sabberworm.CSS.Parser.html#method_inputLeft" class="">inputLeft()</a><br />
+                                                                    <a href="../classes/Sabberworm.CSS.Parser.html#method_substr" class="">substr()</a><br />
+                                                                    <a href="../classes/Sabberworm.CSS.Parser.html#method_strlen" class="">strlen()</a><br />
+                                                                    <a href="../classes/Sabberworm.CSS.Parser.html#method_streql" class="">streql()</a><br />
+                                                                    <a href="../classes/Sabberworm.CSS.Parser.html#method_strtolower" class="">strtolower()</a><br />
+                                                                    <a href="../classes/Sabberworm.CSS.Parser.html#method_strpos" class="">strpos()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Sabberworm.CSS.Parser.html#property_sText" class="">$sText</a><br />
+                                                                    <a href="../classes/Sabberworm.CSS.Parser.html#property_iCurrentPosition" class="">$iCurrentPosition</a><br />
+                                                                    <a href="../classes/Sabberworm.CSS.Parser.html#property_oParserSettings" class="">$oParserSettings</a><br />
+                                                                    <a href="../classes/Sabberworm.CSS.Parser.html#property_sCharset" class="">$sCharset</a><br />
+                                                                    <a href="../classes/Sabberworm.CSS.Parser.html#property_iLength" class="">$iLength</a><br />
+                                                                    <a href="../classes/Sabberworm.CSS.Parser.html#property_peekCache" class="">$peekCache</a><br />
+                                                                    <a href="../classes/Sabberworm.CSS.Parser.html#property_blockRules" class="">$blockRules</a><br />
+                                                                    <a href="../classes/Sabberworm.CSS.Parser.html#property_aSizeUnits" class="">$aSizeUnits</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/Parser.php.html"><div class="path-wrapper">Parser.php</div></a></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                    <div class="namespace-wrapper">\Sabberworm\CSS\Parser</div>
+                            </dd>
+
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr>
+                            <th>
+                                todo
+                            </th>
+                            <td>
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_sText" name="property_sText" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$sText</h3>
+                <pre class="signature">$sText</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_iCurrentPosition" name="property_iCurrentPosition" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$iCurrentPosition</h3>
+                <pre class="signature">$iCurrentPosition</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_oParserSettings" name="property_oParserSettings" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$oParserSettings</h3>
+                <pre class="signature">$oParserSettings</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_sCharset" name="property_sCharset" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$sCharset</h3>
+                <pre class="signature">$sCharset</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_iLength" name="property_iLength" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$iLength</h3>
+                <pre class="signature">$iLength</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_peekCache" name="property_peekCache" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$peekCache</h3>
+                <pre class="signature">$peekCache</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_blockRules" name="property_blockRules" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$blockRules</h3>
+                <pre class="signature">$blockRules</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_aSizeUnits" name="property_aSizeUnits" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$aSizeUnits</h3>
+                <pre class="signature">$aSizeUnits</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct(\Sabberworm\CSS\type <span class="argument">$sText</span>, \Sabberworm\CSS\Settings <span class="argument">$oParserSettings</span>)</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Sabberworm\CSS\type</td>
+                                <td>$sText</td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td><a href="../classes/Sabberworm.CSS.Settings.html">\Sabberworm\CSS\Settings</a></td>
+                                <td>$oParserSettings</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setCharset" name="method_setCharset" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setCharset()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setCharset(\Sabberworm\CSS\type <span class="argument">$sCharset</span>)</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Sabberworm\CSS\type</td>
+                                <td>$sCharset</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getCharset" name="method_getCharset" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getCharset()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getCharset() : \Sabberworm\CSS\type</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    \Sabberworm\CSS\type
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_parse" name="method_parse" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">parse()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">parse() : \Sabberworm\CSS\CSSList\Document</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Sabberworm.CSS.CSSList.Document.html">\Sabberworm\CSS\CSSList\Document</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_parseDocument" name="method_parseDocument" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">parseDocument()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">parseDocument(\Sabberworm\CSS\CSSList\Document <span class="argument">$oDocument</span>)</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Sabberworm.CSS.CSSList.Document.html">\Sabberworm\CSS\CSSList\Document</a></td>
+                                <td>$oDocument</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_parseList" name="method_parseList" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">parseList()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">parseList(\Sabberworm\CSS\CSSList\CSSList <span class="argument">$oList</span>, \Sabberworm\CSS\type <span class="argument">$bIsRoot</span>) : \Sabberworm\CSS\type</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Sabberworm.CSS.CSSList.CSSList.html">\Sabberworm\CSS\CSSList\CSSList</a></td>
+                                <td>$oList</td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>\Sabberworm\CSS\type</td>
+                                <td>$bIsRoot</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Exception</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    \Sabberworm\CSS\type
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_parseAtRule" name="method_parseAtRule" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">parseAtRule()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">parseAtRule() : \Sabberworm\CSS\Property\Import|\Sabberworm\CSS\CSSList\AtRuleBlockList|\Sabberworm\CSS\Property\Charset|\Sabberworm\CSS\CSSList\KeyFrame|\Sabberworm\CSS\Property\CSSNamespace</pre>
+                <p><em></em></p>
+                
+
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Exception</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Sabberworm.CSS.Property.Import.html">\Sabberworm\CSS\Property\Import</a>|<a href="../classes/Sabberworm.CSS.CSSList.AtRuleBlockList.html">\Sabberworm\CSS\CSSList\AtRuleBlockList</a>|<a href="../classes/Sabberworm.CSS.Property.Charset.html">\Sabberworm\CSS\Property\Charset</a>|<a href="../classes/Sabberworm.CSS.CSSList.KeyFrame.html">\Sabberworm\CSS\CSSList\KeyFrame</a>|<a href="../classes/Sabberworm.CSS.Property.CSSNamespace.html">\Sabberworm\CSS\Property\CSSNamespace</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_parseIdentifier" name="method_parseIdentifier" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">parseIdentifier()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">parseIdentifier(\Sabberworm\CSS\type <span class="argument">$bAllowFunctions</span>, \Sabberworm\CSS\type <span class="argument">$bIgnoreCase</span>) : \Sabberworm\CSS\Value\CSSFunction</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Sabberworm\CSS\type</td>
+                                <td>$bAllowFunctions</td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>\Sabberworm\CSS\type</td>
+                                <td>$bIgnoreCase</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Sabberworm\CSS\Parsing\UnexpectedTokenException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Sabberworm.CSS.Value.CSSFunction.html">\Sabberworm\CSS\Value\CSSFunction</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_parseStringValue" name="method_parseStringValue" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">parseStringValue()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">parseStringValue() : \Sabberworm\CSS\Value\String</pre>
+                <p><em></em></p>
+                
+
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Exception</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Sabberworm.CSS.Value.String.html">\Sabberworm\CSS\Value\String</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_parseCharacter" name="method_parseCharacter" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">parseCharacter()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">parseCharacter(\Sabberworm\CSS\type <span class="argument">$bIsForIdentifier</span>) : string|null</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Sabberworm\CSS\type</td>
+                                <td>$bIsForIdentifier</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string|null
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_parseSelector" name="method_parseSelector" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">parseSelector()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">parseSelector() : \Sabberworm\CSS\RuleSet\DeclarationBlock</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Sabberworm.CSS.RuleSet.DeclarationBlock.html">\Sabberworm\CSS\RuleSet\DeclarationBlock</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_parseRuleSet" name="method_parseRuleSet" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">parseRuleSet()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">parseRuleSet(\Sabberworm\CSS\type <span class="argument">$oRuleSet</span>) : \Sabberworm\CSS\type</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Sabberworm\CSS\type</td>
+                                <td>$oRuleSet</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \Sabberworm\CSS\type
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_parseRule" name="method_parseRule" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">parseRule()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">parseRule() : \Sabberworm\CSS\Rule\Rule</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Sabberworm.CSS.Rule.Rule.html">\Sabberworm\CSS\Rule\Rule</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_parseValue" name="method_parseValue" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">parseValue()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">parseValue(\Sabberworm\CSS\type <span class="argument">$aListDelimiters</span>) : array</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Sabberworm\CSS\type</td>
+                                <td>$aListDelimiters</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_listDelimiterForRule" name="method_listDelimiterForRule" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">listDelimiterForRule()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">listDelimiterForRule(\Sabberworm\CSS\type <span class="argument">$sRule</span>) : \Sabberworm\CSS\type</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Sabberworm\CSS\type</td>
+                                <td>$sRule</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \Sabberworm\CSS\type
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_parsePrimitiveValue" name="method_parsePrimitiveValue" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">parsePrimitiveValue()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">parsePrimitiveValue() : \Sabberworm\CSS\type</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    \Sabberworm\CSS\type
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_parseNumericValue" name="method_parseNumericValue" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">parseNumericValue()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">parseNumericValue(\Sabberworm\CSS\type <span class="argument">$bForColor</span>) : \Sabberworm\CSS\Value\Size</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Sabberworm\CSS\type</td>
+                                <td>$bForColor</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Sabberworm.CSS.Value.Size.html">\Sabberworm\CSS\Value\Size</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_parseColorValue" name="method_parseColorValue" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">parseColorValue()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">parseColorValue() : \Sabberworm\CSS\Value\Color</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Sabberworm.CSS.Value.Color.html">\Sabberworm\CSS\Value\Color</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_parseURLValue" name="method_parseURLValue" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">parseURLValue()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">parseURLValue() : \Sabberworm\CSS\Value\URL</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Sabberworm.CSS.Value.URL.html">\Sabberworm\CSS\Value\URL</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_identifierIs" name="method_identifierIs" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">identifierIs()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">identifierIs(\Sabberworm\CSS\type <span class="argument">$sIdentifier</span>, \Sabberworm\CSS\type <span class="argument">$sMatch</span>) : \Sabberworm\CSS\type</pre>
+                <p><em>Tests an identifier for a given value. Since identifiers are all keywords, they can be vendor-prefixed. We need to check for these versions too.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Sabberworm\CSS\type</td>
+                                <td>$sIdentifier</td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>\Sabberworm\CSS\type</td>
+                                <td>$sMatch</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \Sabberworm\CSS\type
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_comes" name="method_comes" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">comes()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">comes(\Sabberworm\CSS\type <span class="argument">$sString</span>, \Sabberworm\CSS\type <span class="argument">$bCaseInsensitive</span>) : \Sabberworm\CSS\type</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Sabberworm\CSS\type</td>
+                                <td>$sString</td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>\Sabberworm\CSS\type</td>
+                                <td>$bCaseInsensitive</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \Sabberworm\CSS\type
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_peek" name="method_peek" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">peek()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">peek(\Sabberworm\CSS\type <span class="argument">$iLength</span>, \Sabberworm\CSS\type <span class="argument">$iOffset</span>) : string</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Sabberworm\CSS\type</td>
+                                <td>$iLength</td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>\Sabberworm\CSS\type</td>
+                                <td>$iOffset</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_consume" name="method_consume" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">consume()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">consume(\Sabberworm\CSS\type <span class="argument">$mValue</span>) : \Sabberworm\CSS\type</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Sabberworm\CSS\type</td>
+                                <td>$mValue</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Sabberworm\CSS\Parsing\UnexpectedTokenException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    \Sabberworm\CSS\type
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_consumeExpression" name="method_consumeExpression" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">consumeExpression()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">consumeExpression(\Sabberworm\CSS\type <span class="argument">$mExpression</span>) : \Sabberworm\CSS\type</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Sabberworm\CSS\type</td>
+                                <td>$mExpression</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Sabberworm\CSS\Parsing\UnexpectedTokenException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    \Sabberworm\CSS\type
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_consumeWhiteSpace" name="method_consumeWhiteSpace" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">consumeWhiteSpace()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">consumeWhiteSpace() : \Sabberworm\CSS\type</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    \Sabberworm\CSS\type
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_consumeComment" name="method_consumeComment" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">consumeComment()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">consumeComment() : boolean</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isEnd" name="method_isEnd" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">isEnd()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">isEnd() : \Sabberworm\CSS\type</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    \Sabberworm\CSS\type
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_consumeUntil" name="method_consumeUntil" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">consumeUntil()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">consumeUntil(\Sabberworm\CSS\type <span class="argument">$aEnd</span>, \Sabberworm\CSS\type <span class="argument">$bIncludeEnd</span>, \Sabberworm\CSS\type <span class="argument">$consumeEnd</span>) : \Sabberworm\CSS\type</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Sabberworm\CSS\type</td>
+                                <td>$aEnd</td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>\Sabberworm\CSS\type</td>
+                                <td>$bIncludeEnd</td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>\Sabberworm\CSS\type</td>
+                                <td>$consumeEnd</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Sabberworm\CSS\Parsing\UnexpectedTokenException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    \Sabberworm\CSS\type
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_inputLeft" name="method_inputLeft" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">inputLeft()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">inputLeft() : \Sabberworm\CSS\type</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    \Sabberworm\CSS\type
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_substr" name="method_substr" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">substr()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">substr(\Sabberworm\CSS\type <span class="argument">$sString</span>, \Sabberworm\CSS\type <span class="argument">$iStart</span>, \Sabberworm\CSS\type <span class="argument">$iLength</span>) : \Sabberworm\CSS\type</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Sabberworm\CSS\type</td>
+                                <td>$sString</td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>\Sabberworm\CSS\type</td>
+                                <td>$iStart</td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>\Sabberworm\CSS\type</td>
+                                <td>$iLength</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \Sabberworm\CSS\type
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_strlen" name="method_strlen" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">strlen()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">strlen(\Sabberworm\CSS\type <span class="argument">$sString</span>) : \Sabberworm\CSS\type</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Sabberworm\CSS\type</td>
+                                <td>$sString</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \Sabberworm\CSS\type
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_streql" name="method_streql" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">streql()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">streql(\Sabberworm\CSS\type <span class="argument">$sString1</span>, \Sabberworm\CSS\type <span class="argument">$sString2</span>, \Sabberworm\CSS\type <span class="argument">$bCaseInsensitive</span>) : \Sabberworm\CSS\type</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Sabberworm\CSS\type</td>
+                                <td>$sString1</td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>\Sabberworm\CSS\type</td>
+                                <td>$sString2</td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>\Sabberworm\CSS\type</td>
+                                <td>$bCaseInsensitive</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \Sabberworm\CSS\type
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_strtolower" name="method_strtolower" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">strtolower()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">strtolower(\Sabberworm\CSS\type <span class="argument">$sString</span>) : \Sabberworm\CSS\type</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Sabberworm\CSS\type</td>
+                                <td>$sString</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \Sabberworm\CSS\type
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_strpos" name="method_strpos" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">strpos()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">strpos(\Sabberworm\CSS\type <span class="argument">$sString</span>, \Sabberworm\CSS\type <span class="argument">$sNeedle</span>, \Sabberworm\CSS\type <span class="argument">$iOffset</span>) : \Sabberworm\CSS\type</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Sabberworm\CSS\type</td>
+                                <td>$sString</td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>\Sabberworm\CSS\type</td>
+                                <td>$sNeedle</td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>\Sabberworm\CSS\type</td>
+                                <td>$iOffset</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \Sabberworm\CSS\type
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">Parser.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Parser.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/Sabberworm.html">\Sabberworm</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on March 14th, 2014 at 16:01.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>
